@@ -31,7 +31,7 @@ namespace InariLyricsKeywords
             var resultFull = new List<string>();
             foreach (var item in dict.OrderBy(o => o.Value))
             {
-                Console.WriteLine(item.Key+":"+item.Value);
+                Console.WriteLine(item.Key + ":" + item.Value);
                 resultFull.Add(item.Key + ":" + item.Value);
             }
             File.WriteAllLines("resultFull.txt", resultFull);
@@ -40,15 +40,12 @@ namespace InariLyricsKeywords
             var resultWord = new List<string>();
             foreach (var item in dict.OrderBy(o => o.Value))
             {
-                if (item.Key.Length > 1 && item.Value > 2)
-                {
-                    Console.WriteLine(item.Key + ":" + item.Value);
-                    resultWord.Add(item.Key + ":" + item.Value);
-                }
+                if (item.Key.Length <= 1 || item.Value <= 2) continue;
+                Console.WriteLine(item.Key + ":" + item.Value);
+                resultWord.Add(item.Key + ":" + item.Value);
             }
             File.WriteAllLines("resultWord.txt", resultWord);
             Console.ReadKey();
-
         }
     }
 }
