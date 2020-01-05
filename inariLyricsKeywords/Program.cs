@@ -11,7 +11,7 @@ namespace InariLyricsKeywords
     {
         static void Main()
         {
-            var texts = File.ReadAllLines("./Lyrics.txt");
+            var texts = File.ReadAllLines("Lyrics.txt");
             var jieba = new JiebaSegmenter();
 
             var dict = new Dictionary<string,int>();
