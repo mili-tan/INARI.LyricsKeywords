@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inariLyricsKeywords", "inariLyricsKeywords\inariLyricsKeywords.csproj", "{E9C167EE-98D5-4DC6-9D76-FA1ECC574967}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InariLyricsKeywords", "inariLyricsKeywords\InariLyricsKeywords.csproj", "{E9C167EE-98D5-4DC6-9D76-FA1ECC574967}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

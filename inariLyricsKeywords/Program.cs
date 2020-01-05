@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using JiebaNet.Segmenter;
 
-namespace inariLyricsKeywords
+namespace InariLyricsKeywords
 {
     static class Program
     {
