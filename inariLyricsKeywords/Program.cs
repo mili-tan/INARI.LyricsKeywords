@@ -21,9 +21,9 @@ namespace InariLyricsKeywords
 
             var jieba = new JiebaSegmenter();
             var dict = new Dictionary<string,int>();
-            foreach (var item in texts)
+            foreach (var segsCut in 
+                texts.Select(item => jieba.Cut(Regex.Replace(item, @"[^\u4e00-\u9fa5]+", "").Replace(" ","")).ToArray()))
             {
-                var segsCut = jieba.Cut(Regex.Replace(item, @"[^\u4e00-\u9fa5]+", "").Replace(" ","")).ToArray();
                 foreach (var i in segsCut)
                 {
                     if (dict.ContainsKey(i)) dict[i] += 1;
