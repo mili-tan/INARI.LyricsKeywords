@@ -49,7 +49,7 @@ namespace InariLyricsKeywords
             {
                 if (item.Key.Length <= 1 || item.Value <= 2) continue;
                 Console.WriteLine($"{item.Key}:{item.Value}");
-                resultFull.Add($"{item.Key}:{item.Value}");
+                resultWord.Add($"{item.Key}:{item.Value}");
             }
             File.WriteAllLines("resultWord.txt", resultWord);
             Console.ReadKey();
