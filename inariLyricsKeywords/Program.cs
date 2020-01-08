@@ -12,8 +12,7 @@ namespace InariLyricsKeywords
         static void Main()
         {
             List<string> texts = new List<string>();
-            DirectoryInfo dir = new DirectoryInfo(@".\lyrics");
-            foreach (var itemFile in dir.GetFiles("*.txt"))
+            foreach (var itemFile in new DirectoryInfo(@".\lyrics").GetFiles("*.txt"))
             {
                 texts.AddRange(File.ReadAllLines(itemFile.FullName));
                 Console.WriteLine(itemFile.FullName);
@@ -22,7 +21,6 @@ namespace InariLyricsKeywords
 
             var jieba = new JiebaSegmenter();
             var dict = new Dictionary<string,int>();
-
             foreach (var item in texts)
             {
                 var segsCut = jieba.Cut(Regex.Replace(item, @"[^\u4e00-\u9fa5]+", "").Replace(" ","")).ToArray();
