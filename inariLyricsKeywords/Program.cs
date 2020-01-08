@@ -11,9 +11,16 @@ namespace InariLyricsKeywords
     {
         static void Main()
         {
-            var texts = File.ReadAllLines("Lyrics.txt");
-            var jieba = new JiebaSegmenter();
+            List<string> texts = new List<string>();
+            DirectoryInfo dir = new DirectoryInfo(@".\lyrics");
+            foreach (var itemFile in dir.GetFiles("*.txt"))
+            {
+                texts.AddRange(File.ReadAllLines(itemFile.FullName));
+                Console.WriteLine(itemFile.FullName);
+            }
+            Console.Clear();
 
+            var jieba = new JiebaSegmenter();
             var dict = new Dictionary<string,int>();
 
             foreach (var item in texts)

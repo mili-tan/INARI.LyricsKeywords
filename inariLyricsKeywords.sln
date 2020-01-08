@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InariLyricsKeywords", "inar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetPlaylist", "GetPlaylist\GetPlaylist.csproj", "{3BA8718D-3A7B-4899-9C21-395750682C7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetLyrics", "GetLyrics\GetLyrics.csproj", "{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3BA8718D-3A7B-4899-9C21-395750682C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BA8718D-3A7B-4899-9C21-395750682C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BA8718D-3A7B-4899-9C21-395750682C7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
