@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetPlaylist", "GetPlaylist\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetLyrics", "GetLyrics\GetLyrics.csproj", "{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToPinyin", "ToPinyin\ToPinyin.csproj", "{6432235E-08BE-48AD-A7DA-17A823898475}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15AEDD06-F8D0-4D1E-9018-21770A3CA73E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6432235E-08BE-48AD-A7DA-17A823898475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6432235E-08BE-48AD-A7DA-17A823898475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6432235E-08BE-48AD-A7DA-17A823898475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6432235E-08BE-48AD-A7DA-17A823898475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
