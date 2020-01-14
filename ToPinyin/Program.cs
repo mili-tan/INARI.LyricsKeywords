@@ -1,15 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Xml;
 
 namespace ToPinyin
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+
+            using (XmlTextReader reader = new XmlTextReader("dict.xml"))
+            {
+                string chn = "";
+                string pinyin = "";
+                while (reader.Read())
+                {
+                    if (reader.NodeType != XmlNodeType.Element) continue;
+                    if (reader.LocalName == "InputString")
+                        pinyin = reader.ReadElementContentAsString();
+                    else if (reader.LocalName == "OutputString")
+                        chn = reader.ReadElementContentAsString();
+                    else if (reader.LocalName == "DictionaryEntry")
+                    {
+                        if (string.IsNullOrEmpty(chn) || string.IsNullOrEmpty(pinyin)) continue;
+                        dictionary.Add(chn, pinyin);
+                        chn = "";
+                        pinyin = "";
+                    }
+                }
+            }
+
+
         }
     }
 }
