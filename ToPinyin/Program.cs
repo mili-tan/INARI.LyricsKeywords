@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace ToPinyin
@@ -29,8 +30,6 @@ namespace ToPinyin
                     }
                 }
             }
-
-
         }
     }
 }
