@@ -9,7 +9,7 @@ namespace ToPinyin
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
-            using (XmlTextReader reader = new XmlTextReader("dict.xml"))
+            using (XmlTextReader reader = new XmlTextReader("dictionary.xml"))
             {
                 string chn = "";
                 string pinyin = "";
