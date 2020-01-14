@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace ToPinyin
@@ -9,6 +10,9 @@ namespace ToPinyin
         static void Main()
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            List<string> wordList = new List<string>();
+
+            wordList.AddRange(File.ReadAllLines("words.txt"));
 
             using (XmlTextReader reader = new XmlTextReader("dictionary.xml"))
             {
@@ -30,6 +34,15 @@ namespace ToPinyin
                     }
                 }
             }
+
+            foreach (var item in wordList)
+            {
+                var str = item.Split(':')[0];
+                //Console.WriteLine(item);
+                if (dictionary.ContainsKey(str)) Console.WriteLine(str + dictionary[str]);
+            }
+
+            Console.ReadKey();
         }
     }
 }
