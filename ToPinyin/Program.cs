@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.International.Converters.PinYinConverter;
 
@@ -43,7 +46,9 @@ namespace ToPinyin
                 if (dictionary.ContainsKey(str)) Console.WriteLine(str + dictionary[str]);
                 else
                 {
-                    
+                    var pinyinStrs = str.ToCharArray().ToList()
+                        .Select(c => Regex.Replace(new ChineseChar(c).Pinyins[0], @"\d", "").ToLower());
+                    Console.WriteLine(str + string.Join(" ", pinyinStrs));
                 }
             }
 
