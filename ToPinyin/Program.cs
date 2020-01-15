@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using Microsoft.International.Converters.PinYinConverter;
 
 namespace ToPinyin
 {
@@ -40,6 +41,10 @@ namespace ToPinyin
                 var str = item.Split(':')[0];
                 //Console.WriteLine(item);
                 if (dictionary.ContainsKey(str)) Console.WriteLine(str + dictionary[str]);
+                else
+                {
+                    
+                }
             }
 
             Console.ReadKey();
