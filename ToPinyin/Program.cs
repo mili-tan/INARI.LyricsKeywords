@@ -15,6 +15,13 @@ namespace ToPinyin
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
             List<string> wordList = new List<string>();
+            List<string> conson = new List<string>
+            {
+                "b", "p", "m", "f", "d", "t", "n", "l", "k", "ɡ", "h", "j", "q", "x", "zh", "ch", "sh", "r", "z", "c", "s"
+                , "y", "w"
+            };
+
+
 
             wordList.AddRange(File.ReadAllLines("words.txt"));
 
@@ -42,14 +49,38 @@ namespace ToPinyin
             foreach (var item in wordList)
             {
                 var str = item.Split(':')[0];
-                //Console.WriteLine(item);
-                if (dictionary.ContainsKey(str)) Console.WriteLine(str + dictionary[str]);
+                List<string> pinyinStrs;
+                if (dictionary.ContainsKey(str))
+                    pinyinStrs = dictionary[str].Split(' ').ToList();
                 else
+                    pinyinStrs = str.ToCharArray().ToList()
+                        .Select(c => Regex.Replace(new ChineseChar(c).Pinyins[0], @"\d", "").ToLower()).ToList();
+
+                foreach (var o in conson)
                 {
-                    var pinyinStrs = str.ToCharArray().ToList()
-                        .Select(c => Regex.Replace(new ChineseChar(c).Pinyins[0], @"\d", "").ToLower());
-                    Console.WriteLine(str + string.Join(" ", pinyinStrs));
+                    var pyChars = pinyinStrs[0].ToCharArray();
+                    if (pyChars.Length <= 1) continue;
+                    if (pyChars[0].ToString() == o)
+                    {
+                        pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
+                        break;
+                    }
+                    if (pyChars[0] + pyChars[1].ToString() == o)
+                    {
+                        pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
+                        break;
+                    }
                 }
+
+                if (pinyinStrs[1].Length > 1)
+                {
+                    if (pinyinStrs[1].ToCharArray()[1] == 'h')
+                        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 2);
+                    else
+                        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 1);
+                }
+
+                Console.WriteLine(str + string.Join(" ", pinyinStrs));
             }
 
             Console.ReadKey();
