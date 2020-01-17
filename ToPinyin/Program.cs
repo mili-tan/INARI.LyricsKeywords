@@ -21,7 +21,7 @@ namespace ToPinyin
                 , "y", "w"
             };
 
-
+            Dictionary<string,int> pyDictionary = new Dictionary<string, int>();
 
             wordList.AddRange(File.ReadAllLines("words.txt"));
 
@@ -73,14 +73,21 @@ namespace ToPinyin
                 }
 
                 if (pinyinStrs[1].Length > 1)
-                {
                     if (pinyinStrs[1].ToCharArray()[1] == 'h')
                         pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 2);
                     else
                         pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 1);
-                }
 
-                Console.WriteLine(str + string.Join(" ", pinyinStrs));
+                var pyStr = string.Join(" ", pinyinStrs);
+                if (pyDictionary.ContainsKey(pyStr))
+                    pyDictionary[pyStr] += Convert.ToInt32(item.Split(':')[1]);
+                else
+                    pyDictionary.Add(pyStr, Convert.ToInt32(item.Split(':')[1]));
+            }
+
+            foreach (var item in pyDictionary.OrderBy(o => o.Value))
+            {
+                Console.WriteLine(item.Key + ":" + item.Value);
             }
 
             Console.ReadKey();
