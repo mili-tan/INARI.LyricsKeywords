@@ -13,7 +13,7 @@ namespace GetLyrics
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var list = File.ReadAllLines("playlist.csv");
             foreach (var item in list)
