@@ -72,11 +72,11 @@ namespace ToPinyin
                     }
                 }
 
-                if (pinyinStrs[1].Length > 1)
-                    if (pinyinStrs[1].ToCharArray()[1] == 'h')
-                        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 2);
-                    else
-                        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 1);
+                //if (pinyinStrs[1].Length > 1)
+                //    if (pinyinStrs[1].ToCharArray()[1] == 'h')
+                //        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 2);
+                //    else
+                //        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 1);
 
                 var pyStr = string.Join(" ", pinyinStrs);
                 if (pyDictionary.ContainsKey(pyStr))
