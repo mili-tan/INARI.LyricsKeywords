@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Microsoft.International.Converters.PinYinConverter;
@@ -13,35 +12,40 @@ namespace ToPinyin
     {
         static void Main()
         {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            List<string> wordList = new List<string>();
-            List<string> conson = new List<string>
+            var dictionary = new Dictionary<string, string>();
+            var wordList = new List<string>();
+            var conson = new List<string>
             {
                 "b", "p", "m", "f", "d", "t", "n", "l", "k", "ɡ", "h", "j", "q", "x", "zh", "ch", "sh", "r", "z", "c", "s"
                 , "y", "w"
             };
 
-            Dictionary<string,int> pyDictionary = new Dictionary<string, int>();
+            var pyDictionary = new Dictionary<string, int>();
 
             wordList.AddRange(File.ReadAllLines("words.txt"));
 
-            using (XmlTextReader reader = new XmlTextReader("dictionary.xml"))
+            var pinyin = "";
+            using (var reader = new XmlTextReader("dictionary.xml"))
             {
-                string chn = "";
-                string pinyin = "";
+                var chn = "";
                 while (reader.Read())
                 {
                     if (reader.NodeType != XmlNodeType.Element) continue;
-                    if (reader.LocalName == "InputString")
-                        pinyin = reader.ReadElementContentAsString();
-                    else if (reader.LocalName == "OutputString")
-                        chn = reader.ReadElementContentAsString();
-                    else if (reader.LocalName == "DictionaryEntry")
+                    switch (reader.LocalName)
                     {
-                        if (string.IsNullOrEmpty(chn) || string.IsNullOrEmpty(pinyin)) continue;
-                        dictionary.Add(chn, pinyin);
-                        chn = "";
-                        pinyin = "";
+                        case "InputString":
+                            pinyin = reader.ReadElementContentAsString();
+                            break;
+                        case "OutputString":
+                            chn = reader.ReadElementContentAsString();
+                            break;
+                        case "DictionaryEntry" when string.IsNullOrEmpty(chn) || string.IsNullOrEmpty(pinyin):
+                            continue;
+                        case "DictionaryEntry":
+                            dictionary.Add(chn, pinyin);
+                            chn = "";
+                            pinyin = "";
+                            break;
                     }
                 }
             }
@@ -65,11 +69,10 @@ namespace ToPinyin
                         pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
                         break;
                     }
-                    if (pyChars[0] + pyChars[1].ToString() == o)
-                    {
-                        pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
-                        break;
-                    }
+
+                    if (pyChars[0] + pyChars[1].ToString() != o) continue;
+                    pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
+                    break;
                 }
 
                 //if (pinyinStrs[1].Length > 1)
@@ -84,12 +87,14 @@ namespace ToPinyin
                 else
                     pyDictionary.Add(pyStr, Convert.ToInt32(item.Split(':')[1]));
             }
-
+            
+            var resultWord = new List<string>();
             foreach (var item in pyDictionary.OrderBy(o => o.Value))
             {
                 Console.WriteLine(item.Key + ":" + item.Value);
+                resultWord.Add($"{item.Key}:{item.Value}");
             }
-
+            File.WriteAllLines("resultWord.txt", resultWord);
             Console.ReadKey();
         }
     }
