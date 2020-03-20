@@ -16,7 +16,7 @@ namespace ToPinyin
             var wordList = new List<string>();
             var conson = new List<string>
             {
-                "b", "p", "m", "f", "d", "t", "n", "l", "k", "ɡ", "h", "j", "q", "x", "zh", "ch", "sh", "r", "z", "c", "s"
+                "b", "p", "m", "f", "d", "t", "n", "l", "k", "g", "h", "j", "q", "x", "zh", "ch", "sh", "r", "z", "c", "s"
                 , "y", "w"
             };
 
@@ -75,6 +75,8 @@ namespace ToPinyin
                     break;
                 }
 
+                //if (pinyinStrs[0].Length != 1 && !pinyinStrs[0].Contains("ng")) pinyinStrs[0] = pinyinStrs[0].Replace("i", "");
+
                 //if (pinyinStrs[1].Length > 1)
                 //    if (pinyinStrs[1].ToCharArray()[1] == 'h')
                 //        pinyinStrs[1] = pinyinStrs[1].Trim().Substring(0, 2);
@@ -93,6 +95,7 @@ namespace ToPinyin
             {
                 Console.WriteLine(item.Key + ":" + item.Value);
                 resultWord.Add($"{item.Key}:{item.Value}");
+                File.AppendAllText($"./tones/{item.Key.Split(' ')[0]}.txt", $"{item.Key}:{item.Value}{Environment.NewLine}");
             }
             File.WriteAllLines("resultWord.txt", resultWord);
             Console.ReadKey();
