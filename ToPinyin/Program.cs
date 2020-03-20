@@ -70,12 +70,16 @@ namespace ToPinyin
                         break;
                     }
 
-                    if (pyChars[0] + pyChars[1].ToString() != o) continue;
-                    pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
-                    break;
+                    if (pyChars[0] + pyChars[1].ToString() == o)
+                    {
+                        pinyinStrs[0] = pinyinStrs[0].Replace(o, "");
+                        break;
+                    }
                 }
 
-                //if (pinyinStrs[0].Length != 1 && !pinyinStrs[0].Contains("ng")) pinyinStrs[0] = pinyinStrs[0].Replace("i", "");
+                if (pinyinStrs[0].Length != 1 && !pinyinStrs[0].Contains("ng"))
+                    if (pinyinStrs[0].ToCharArray()[0] == 'i')
+                        pinyinStrs[0] = pinyinStrs[0].Substring(1, pinyinStrs[0].Length - 1);
 
                 //if (pinyinStrs[1].Length > 1)
                 //    if (pinyinStrs[1].ToCharArray()[1] == 'h')
